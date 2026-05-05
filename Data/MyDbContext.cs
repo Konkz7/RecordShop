@@ -7,9 +7,9 @@ namespace RecordShop.Data
     {
         public DbSet<Album> Albums { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public MyDbContext(DbContextOptions<MyDbContext> options)
+        : base(options)
         {
-            optionsBuilder.UseInMemoryDatabase("TestDb");
         }
     }
 }

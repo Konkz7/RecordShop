@@ -1,6 +1,8 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using RecordShop.Data;
 using RecordShop.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 
 namespace RecordShop.Repository
@@ -30,12 +32,12 @@ namespace RecordShop.Repository
 
         public Album GetAlbumById(int id)
         {
-            return _dbContext.Albums.ToList().Find(x => x.Id == id);
+            return _dbContext.Albums.FirstOrDefault(x => x.Id == id);
         }
 
         public Album AddAlbum(Album album)
         {
-            List<Album> albums = GetAllAlbums();
+            DbSet<Album> albums = _dbContext.Albums;
             int newId = albums.Any() ? albums.Max(x => x.Id) + 1 : 1;
 
             if (album.ReleaseYear < 1000 || album.ReleaseYear > 2026)
@@ -45,13 +47,24 @@ namespace RecordShop.Repository
 
             albums.Add(album);
 
+            _dbContext.SaveChanges();
+
             return album;
         }
 
         public bool DeleteAlbum(int id)
         {
-            List<Album> albums = GetAllAlbums();
-            return albums.Remove(GetAlbumById(id));
+            DbSet<Album> albums = _dbContext.Albums;
+            if(!albums.Where(x => x.Id == id).Any())
+            {
+                return false;
+            }
+            albums.Remove(GetAlbumById(id));
+            
+            
+            _dbContext.SaveChanges();
+
+            return true ;
         }
 
         public Album UpdateAlbum(int id , AlbumDto album)
@@ -68,6 +81,7 @@ namespace RecordShop.Repository
             updated.Genre = album.Genre.GetValueOrDefault(updated.Genre);
 
 
+            _dbContext.SaveChanges();
 
             return updated;
         }

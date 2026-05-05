@@ -5,7 +5,7 @@ using RecordShop.Models;
 namespace RecordShop.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/albums")]
     public class AlbumController : ControllerBase
     {
         private readonly IAlbumService _albumService;
