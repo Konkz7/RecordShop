@@ -2,30 +2,25 @@
 
 namespace RecordShop.Models
 {
-    public class Album
+    public class AlbumDto
     {
-
-        public int Id { get; set; }
-
         public string Title { get; set; }
 
         public string Artist { get; set; }
 
-        public Genre Genre { get; set; }
+        public Genre? Genre { get; set; }
 
-        public int ReleaseYear { get; set; }
+        public int? ReleaseYear { get; set; }
 
-        public decimal Price{ get; set; }
+        public decimal? Price { get; set; }
 
-        public Album(int id, string title, string artist, Genre genre, int releaseYear, decimal price)
+        public AlbumDto(string title, string artist, Genre? genre, int? releaseYear, decimal? price)
         {
-            Id = id;
             Title = title;
             Artist = artist;
             Genre = genre;
             ReleaseYear = releaseYear;
             Price = price;
         }
-
     }
 }

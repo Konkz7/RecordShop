@@ -1,6 +1,6 @@
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
 using RecordShop.Data;
+using RecordShop.Repository;
+using RecordShop.Services;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +11,12 @@ builder.Services.AddDbContext<MyDbContext>();
 
 // Add services to the container.
 
+
+
 builder.Services.AddControllers();
+builder.Services.AddScoped<IAlbumModel, AlbumModel>();
+builder.Services.AddScoped<IAlbumService, AlbumService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

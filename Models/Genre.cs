@@ -2,5 +2,10 @@
 {
     public enum Genre
     {
+        Classical,
+        Electronic,
+        HipHop,
+        Pop,
+        Rock
     }
 }
