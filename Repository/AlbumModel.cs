@@ -16,6 +16,14 @@ namespace RecordShop.Repository
         public Album UpdateAlbum(int id, Album album);
         public bool DeleteAlbum(int id);
 
+        public List<Album> GetAllAlbumsByArtist(string artist);
+
+        public List<Album> GetAllAlbumsByReleaseYear(int year);
+
+        public List<Album> GetAllAlbumsByGenre(Genre genre);
+
+        public Album GetAlbumByName(string name);
+
     }
     public class AlbumModel : IAlbumModel
     {
@@ -28,6 +36,26 @@ namespace RecordShop.Repository
         public List<Album> GetAllAlbums()
         {
             return _dbContext.Albums.ToList();
+        }
+
+        public List<Album> GetAllAlbumsByArtist(string artist)
+        {
+            return _dbContext.Albums.Where(x => x.Artist == artist).ToList();
+        }
+
+        public List<Album> GetAllAlbumsByReleaseYear(int year)
+        {
+            return _dbContext.Albums.Where(x => x.ReleaseYear == year).ToList();
+        }
+
+        public List<Album> GetAllAlbumsByGenre(Genre genre)
+        {
+            return _dbContext.Albums.Where(x => x.Genre == genre).ToList();
+        }
+
+        public Album GetAlbumByName(string name)
+        {
+            return _dbContext.Albums.FirstOrDefault(x => x.Title == name);
         }
 
         public Album GetAlbumById(int id)
