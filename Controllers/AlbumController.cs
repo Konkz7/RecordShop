@@ -66,7 +66,5 @@ namespace RecordShop.Controllers
             return Ok(_albumService.UpdateAlbum(id,album));
         }
 
-
-
     }
 }
