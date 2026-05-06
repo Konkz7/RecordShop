@@ -66,6 +66,52 @@ namespace RecordShop.Controllers
             return Ok(_albumService.UpdateAlbum(id,album));
         }
 
+        [HttpGet("by-name")]
+        public IActionResult GetByName([FromQuery] string name)
+        {
+            var albums = _albumService.GetAlbumByName(name);
+
+            if (albums == null )
+                return NotFound($"No albums found for genre: {name}");
+
+            return Ok(albums);
+        }
+
+        [HttpGet("by-artist")]
+        public IActionResult GetByArtist([FromQuery] string artist)
+        {
+            var albums = _albumService.GetAllAlbumsByArtist(artist);
+
+            if (albums == null || !albums.Any())
+                return NotFound($"No albums found for artist: {artist}");
+
+            return Ok(albums);
+        }
+
+        
+        [HttpGet("by-genre")]
+        public IActionResult GetByGenre([FromQuery] Genre genre)
+        {
+            var albums = _albumService.GetAllAlbumsByGenre(genre);
+
+            if (albums == null || !albums.Any())
+                return NotFound($"No albums found for genre: {genre}");
+
+            return Ok(albums);
+        }
+
+        
+        [HttpGet("by-year")]
+        public IActionResult GetByReleaseYear([FromQuery] int year)
+        {
+            var albums = _albumService.GetAllAlbumsByReleaseYear(year);
+
+            if (albums == null || !albums.Any())
+                return NotFound($"No albums found for year: {year}");
+
+            return Ok(albums);
+        }
+
 
 
 

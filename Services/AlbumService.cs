@@ -11,6 +11,15 @@ namespace RecordShop.Services
 
         public Album UpdateAlbum(int id,Album album);
         public bool DeleteAlbum(int id);
+
+        public List<Album> GetAllAlbumsByArtist(string artist);
+
+        public List<Album> GetAllAlbumsByReleaseYear(int year);
+
+        public List<Album> GetAllAlbumsByGenre(Genre genre);
+
+        public Album GetAlbumByName(string name);
+
     }
     public class AlbumService : IAlbumService
     {
@@ -36,9 +45,29 @@ namespace RecordShop.Services
             return _albumModel.GetAlbumById(id);
         }
 
+        public Album GetAlbumByName(string name)
+        {
+            return _albumModel.GetAlbumByName(name);
+        }
+
         public List<Album> GetAllAlbums()
         {
             return _albumModel.GetAllAlbums();  
+        }
+
+        public List<Album> GetAllAlbumsByArtist(string artist)
+        {
+            return _albumModel.GetAllAlbumsByArtist(artist);
+        }
+
+        public List<Album> GetAllAlbumsByGenre(Genre genre)
+        {
+            return _albumModel.GetAllAlbumsByGenre(genre);
+        }
+
+        public List<Album> GetAllAlbumsByReleaseYear(int year)
+        {
+            return _albumModel.GetAllAlbumsByReleaseYear(year);
         }
 
         public Album UpdateAlbum(int id, Album album)
