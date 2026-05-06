@@ -13,7 +13,7 @@ namespace RecordShop.Repository
         public List<Album> GetAllAlbums();
         public Album GetAlbumById(int id);
         public Album AddAlbum(Album album);
-        public Album UpdateAlbum(int id, AlbumDto album);
+        public Album UpdateAlbum(int id, Album album);
         public bool DeleteAlbum(int id);
 
     }
@@ -67,18 +67,20 @@ namespace RecordShop.Repository
             return true ;
         }
 
-        public Album UpdateAlbum(int id , AlbumDto album)
+        public Album UpdateAlbum(int id , Album album)
         {
             Album updated = GetAlbumById(id);
 
             if (album.ReleaseYear < 1000 || album.ReleaseYear > 2026)
                 throw new ArgumentException("Invalid year");
 
-            updated.Artist = album.Artist.IsNullOrEmpty() ? updated.Artist : album.Artist;
-            updated.Title = album.Title.IsNullOrEmpty() ? updated.Title : album.Title;
-            updated.Price = album.Price.GetValueOrDefault(updated.Price);
-            updated.ReleaseYear = album.ReleaseYear.GetValueOrDefault(updated.ReleaseYear);
-            updated.Genre = album.Genre.GetValueOrDefault(updated.Genre);
+            if (id != album.Id) throw new ArgumentException("Inorrect id, cannot update this entry");
+
+            updated.Artist =  album.Artist;
+            updated.Title = album.Title;
+            updated.Price = album.Price;
+            updated.ReleaseYear = album.ReleaseYear;
+            updated.Genre = album.Genre;
 
 
             _dbContext.SaveChanges();
