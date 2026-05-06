@@ -19,7 +19,9 @@ namespace RecordShop.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price{ get; set; }
 
-        public Album(int id, string title, string artist, Genre genre, int releaseYear, decimal price)
+        public int Stock {  get; set; }
+
+        public Album(int id, string title, string artist, Genre genre, int releaseYear, decimal price, int stock)
         {
             Id = id;
             Title = title;
@@ -27,6 +29,7 @@ namespace RecordShop.Models
             Genre = genre;
             ReleaseYear = releaseYear;
             Price = price;
+            Stock = stock;
         }
 
     }
