@@ -40,6 +40,11 @@ namespace RecordShop.Controllers
         {
             Album newAlbum = _albumService.AddAlbum(album);
 
+            if(newAlbum == null)
+            {
+                return BadRequest();
+            }
+
             return CreatedAtAction(nameof(GetAlbum) , new { Id = newAlbum.Id } , newAlbum);
         }
 
@@ -58,7 +63,7 @@ namespace RecordShop.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateAlbum(int id , Album album)
         {
-            return Ok(album);
+            return Ok(_albumService.UpdateAlbum(id,album));
         }
 
 

@@ -43,7 +43,8 @@ namespace RecordShop.Repository
             if (album.ReleaseYear < 1000 || album.ReleaseYear > 2026)
                 throw new ArgumentException("Invalid year");
 
-            album.Id = newId;   
+            //Only for Development
+            //album.Id = newId;   
 
             albums.Add(album);
 

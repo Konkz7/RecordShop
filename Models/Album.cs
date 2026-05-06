@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecordShop.Models
 {
@@ -15,6 +16,7 @@ namespace RecordShop.Models
 
         public int ReleaseYear { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price{ get; set; }
 
         public Album(int id, string title, string artist, Genre genre, int releaseYear, decimal price)

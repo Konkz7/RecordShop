@@ -9,7 +9,7 @@ namespace RecordShop.Services
         public Album GetAlbumById(int id);
         public Album AddAlbum(Album album);
 
-        public Album UpdateAlbum(int id,AlbumDto album);
+        public Album UpdateAlbum(int id,Album album);
         public bool DeleteAlbum(int id);
     }
     public class AlbumService : IAlbumService
@@ -41,7 +41,7 @@ namespace RecordShop.Services
             return _albumModel.GetAllAlbums();  
         }
 
-        public Album UpdateAlbum(int id, AlbumDto album)
+        public Album UpdateAlbum(int id, Album album)
         {
             return _albumModel.UpdateAlbum(id,album);
         }
